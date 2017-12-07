@@ -18,6 +18,9 @@ module Codebreaker
 
     def try_to_guess(attempt_to_guess)
       @attempts_count += 1 if Attempt.new(attempt_to_guess)
+      #if you won
+      #if you lose
+      #if attemps count > 4
     end
   end
 
@@ -29,7 +32,19 @@ module Codebreaker
 
     def valid?(attempt_to_guess)
       msg = "=== GIVE ME 4 DIGITS (1-6) ==="
+      attempt_to_guess = attempt_to_guess.to_s.split('') if !attempt_to_guess.is_a?(Array) 
       attempt_to_guess.join.match(/([1-6]){4}/) ? true : (raise ArgumentError.new(msg))
+    end
+  end
+
+  class Hint
+    attr_reader :result
+    def initialize(attempt_to_guess_validated)
+      @result = analize(attempt_to_guess_validated)
+    end
+
+    def analize(attempt_to_guess_validated)
+      #
     end
   end
 end

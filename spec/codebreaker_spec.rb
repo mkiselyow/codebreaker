@@ -8,15 +8,13 @@ RSpec.describe Codebreaker do
       Faker::UniqueGenerator.clear
     end
 
-    describe '#start' do
+    describe Codebreaker::Game do
       let(:game) { @game = described_class.new }
 
       it 'saves secret code' do
         game.start
         expect(game.instance_variable_get(:@secret_code)).not_to be_empty
       end
-
-      # it 'saves 4 numbers secret code'
 
       it 'Game.new.start generates 4 digit number' do 
         game.start
@@ -38,8 +36,18 @@ RSpec.describe Codebreaker do
       end
 
       it "raises" do
-        expect { Object.new.foo }.to raise_error(NameError)
+        msg = "=== GIVE ME 4 DIGITS (1-6) ==="
+        invalid_input_array = [7543, 12345, 123, 'abcd']
+        invalid_input_array.each do |invalid_input|
+          expect { game.try_to_guess(7543) }.
+            to raise_error(ArgumentError, msg)
+        end
       end
+
+      it "gives hint if did not guess"
+      it "ends when attempts_count > 4"
+      it "gives hint if did not guess"
+      it "congradulates when win"
       
     end
   end
