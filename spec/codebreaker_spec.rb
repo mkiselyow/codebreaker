@@ -9,7 +9,7 @@ RSpec.describe Codebreaker do
     end
 
     describe Codebreaker::Game do
-      let(:game) { @game = described_class.new }
+      let(:game) { @game = described_class.new('test') }
 
       it 'Game.new.start generates 4 digit number' do 
         game.start
